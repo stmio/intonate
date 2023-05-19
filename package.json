@@ -1,8 +1,9 @@
 {
   "name": "intonate",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A small JavaScript package that converts microphone input to a frequency and corresponding musical note",
+  "main": "intonate.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stmio/intonate.git"
@@ -12,5 +13,5 @@
   "bugs": {
     "url": "https://github.com/stmio/intonate/issues"
   },
-  "homepage": "https://github.com/stmio/intonate#readme"
+  "homepage": "https://github.com/stmio/intonate#README"
 }
