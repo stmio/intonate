@@ -30,16 +30,8 @@ export const intonate = async () => {
     analyser.getFloatTimeDomainData(buffer);
     const frequency = autoCorrelate(buffer, audioContext.sampleRate);
 
-    // Volume calculations (experimental)
-    let sumSquares = 0.0;
-    for (const amplitude of buffer) {
-      sumSquares += Math.pow(amplitude, 2);
-    }
-    let volume = Math.sqrt(sumSquares / buffer.length);
-    //
-
     callbacks.forEach((fn) =>
-      fn(frequency ? valuesAtFrequency(frequency, volume) : {})
+      fn(frequency ? valuesAtFrequency(frequency) : {})
     );
 
     rafID = requestAnimationFrame(listen);
@@ -79,7 +71,7 @@ const A4_MIDI = 69;
 const A = Math.pow(2, 1 / 12);
 const C0_PITCH = 16.35;
 
-const valuesAtFrequency = (freq, vol = undefined) => {
+const valuesAtFrequency = (freq) => {
   const N = Math.round(12 * Math.log2(freq / CONCERT_PITCH));
   const Fn = CONCERT_PITCH * Math.pow(A, N);
   const noteIndex = (N + A4_MIDI) % 12;
@@ -92,7 +84,6 @@ const valuesAtFrequency = (freq, vol = undefined) => {
     noteFrequency: Fn,
     deviation: freq - Fn,
     octave,
-    volume: vol,
   };
 };
 
