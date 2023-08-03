@@ -30,13 +30,12 @@ export const intonate = async () => {
     analyser.getFloatTimeDomainData(buffer);
     const frequency = autoCorrelate(buffer, audioContext.sampleRate);
 
-    // Volume calculations (experimental)
+    // Volume calculations
     let sumSquares = 0.0;
     for (const amplitude of buffer) {
       sumSquares += Math.pow(amplitude, 2);
     }
-    let volume = Math.sqrt(sumSquares / buffer.length);
-    //
+    const volume = Math.sqrt(sumSquares / buffer.length);
 
     callbacks.forEach((fn) =>
       fn(frequency ? valuesAtFrequency(frequency, volume) : {})

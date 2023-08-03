@@ -1,6 +1,6 @@
 {
   "name": "intonate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A small JavaScript package that converts microphone input to a frequency and corresponding musical note",
   "main": "intonate.js",
   "repository": {
